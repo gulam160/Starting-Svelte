@@ -1,4 +1,6 @@
 <script>
+  import { createEventDispatcher } from "svelte";
+
   let name = "",
     email = "",
     age,
@@ -8,12 +10,14 @@
     skills = [],
     city = "";
 
+  const dispatch = createEventDispatcher();
   function handleSumbit() {
     if (!(name && age)) {
       alert("Missing fields");
       return;
     }
-    let data = { name, email, age, skills, city };
+    let data = { name, email, age, skills, city, id: Math.random() };
+    dispatch("user", data);
   }
 </script>
 

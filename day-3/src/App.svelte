@@ -1,11 +1,17 @@
 <script>
   import AddPeopleForm from "./components/AddPeopleForm.svelte";
 
-  const users = [];
+  let users = [];
+
+  const handleUsers = (e) => {
+    const user = e.detail;
+    users = [...users, user];
+    console.log(users);
+  };
 </script>
 
 <main>
-  <AddPeopleForm />
+  <AddPeopleForm on:user={handleUsers} />
   {#each users as user, index (index + 1)}
     <p class="h1">{index + 1}. {user.name}</p>
   {:else}
